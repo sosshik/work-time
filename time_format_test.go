@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"os"
+	"testing"
+)
 
 func TestFormatTime(t *testing.T) {
 	t.Parallel()
@@ -34,6 +38,47 @@ func TestFormatTime(t *testing.T) {
 			if got != tt.want {
 				t.Errorf("FormatTime() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func Test_main1(t *testing.T) {
+	newArgs := []string{os.Args[0], "-time=03:04:05PM", "-time=03:04:05PM"}
+	tests := []struct {
+		name string
+	}{
+		{"panic"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			defer func() {
+				if r := recover(); r != nil {
+					fmt.Println("Recovered in main", r)
+				}
+			}()
+			os.Args = newArgs
+			main()
+			t.Errorf("The code did not panic")
+		})
+	}
+}
+
+func Test_main2(t *testing.T) {
+	tests := []struct {
+		name string
+	}{
+		{"panic"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			defer func() {
+				if r := recover(); r != nil {
+					fmt.Println("Recovered in main", r)
+				}
+			}()
+			os.Args = []string{""}
+			main()
+			t.Errorf("The code did not panic")
 		})
 	}
 }
