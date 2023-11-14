@@ -43,7 +43,7 @@ func TestFormatTime(t *testing.T) {
 }
 
 func Test_main1(t *testing.T) {
-	newArgs := []string{os.Args[0], "-time=03:04:05PM", "-time=03:04:05PM"}
+	newArgs := []string{os.Args[0], "-time=03:04:05PM", "asfeasf"}
 	tests := []struct {
 		name string
 	}{

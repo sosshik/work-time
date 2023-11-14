@@ -8,20 +8,18 @@ import (
 )
 
 func main() {
-	if len(flag.Args()) > 2 {
-		panic("panic: Too many args")
-	}
 	arg := flag.String("time", "", "original time")
 	flag.Parse()
-	timeStr := *arg
-
-	if timeStr == "" {
-		panic("panic: Missing flag -time\n")
+	timeArgs := flag.Args()
+	if len(timeArgs) != 0 {
+		panic("Use command like this: go run time_format.go -time=03:04:05am \n")
 	}
+
+	timeStr := *arg
 
 	milTime, err := FormatTime(timeStr)
 	if err != nil {
-		panic(err)
+		panic(fmt.Errorf("error: %w, use command like this: go run time_format.go -time=03:04:05am", err))
 	}
 
 	fmt.Printf("%s\n", milTime)
