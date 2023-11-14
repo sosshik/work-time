@@ -63,6 +63,11 @@ func Test_main1(t *testing.T) {
 	}
 }
 
+//This test is just for learning purposes. As we don't have too much to test in this project.
+//We are tring to test if main function is properly hadling different amount of os.Args.
+//Test is runnig main with custom os.Args and in case of panic recovers it and test passes.
+//If no panic happened test fails by t.Errorf.
+
 func Test_main2(t *testing.T) {
 	tests := []struct {
 		name string
@@ -82,6 +87,11 @@ func Test_main2(t *testing.T) {
 		})
 	}
 }
+
+//This test is just for learning purposes. As we don't have too much to test in this project.
+//We are tring to test if main function is properly hadling different amount of os.Args.
+//Test is runnig main with custom os.Args and in case of panic recovers it and test passes.
+//If no panic happened test fails by t.Errorf.
 
 func BenchmarkFormatTime(b *testing.B) {
 
